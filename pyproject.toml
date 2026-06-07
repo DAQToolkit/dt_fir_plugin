@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dt-fir-plugin"
+version = "1.0.0"
+description = "SciPy FIR Processing Plugins for DAQ Toolkit"
+authors = [{ name = "DAQ Toolkit Developer" }]
+dependencies = [
+    "numpy>=1.24.0",
+    "scipy>=1.10.0",
+    "dt_core @ git+https://github.com/DAQToolkit/dt_core.git",
+]
+
+[project.optional-dependencies]
+gui = [
+    "dt_gui @ git+https://github.com/DAQToolkit/dt_gui.git",
+]
+
+# Registers the 3 filters as independent plugins in the DAQ Engine
+[project.entry-points."dt.plugins.processing"]
+fir_lpf = "dt_fir.lpf"
+fir_hpf = "dt_fir.hpf"
+fir_bpf = "dt_fir.bpf"
